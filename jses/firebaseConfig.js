@@ -21,23 +21,61 @@ from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
         pesan.textContent = teks;
     }
 
-  // Ambil data tamu dari CSV berdasarkan ?id=
-    function muatTamu() {
-        return new Promise((resolve) => {
-            Papa.parse("data/data-tamu.csv", {
-                download: true, header: true, skipEmptyLines: true,
-                complete: (r) => resolve(r.data.find((t) => t.id === guestId) || null),
-                error: () => resolve(null)
-            });
-        });
-    }
+const params  = new URLSearchParams(location.search);
+const idLink  = (params.get("id") || "").trim();
+const namaLink = (params.get("to") || "").trim();
+let guestId = null;
+let tamu = null;
+
+const norm = (s) => String(s ?? "").trim().replace(/\s+/g, " ").toLowerCase();
+
+function muatTamu() {
+  return new Promise((resolve, reject) => {
+    if (typeof Papa === "undefined") return reject(new Error("PapaParse belum dimuat"));
+    Papa.parse("data/data-tamu.csv", {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      // buang BOM dan spasi di nama kolom, penyebab umum kolom "id" tidak terbaca
+      transformHeader: (h) => h.replace(/^\uFEFF/, "").trim(),
+      complete: (r) => {
+        console.log("CSV terbaca:", r.data.length, "baris. Kolom:", r.meta.fields);
+        const data = r.data;
+        const ketemu =
+          (idLink   && data.find((t) => String(t.id).trim() === idLink)) ||
+          (namaLink && data.find((t) => norm(t.nama_tamu) === norm(namaLink))) ||
+          null;
+        resolve(ketemu);
+      },
+      error: (err) => reject(err)
+    });
+  });
+}
+
 
     async function init() {
-        if (!guestId) { form.hidden = true; return tampilPesan("Link undangan tidak valid.", "warning"); }
-        tamu = await muatTamu();
-        if (!tamu) { form.hidden = true; return tampilPesan("Data tamu tidak ditemukan.", "warning"); }
+        
+        if (!idLink && !namaLink) {
+            form.hidden = true;
+            return tampilPesan("Link undangan tidak valid.", "warning");
+        }
 
-        document.getElementById("sapaan").textContent = "Kepada " + tamu.nama_tamu;
+        try {
+            tamu = await muatTamu();
+        } catch (err) {
+            console.error(err);
+            form.hidden = true;
+            return tampilPesan("Data tamu gagal dimuat. Coba muat ulang halaman.", "danger");
+        }
+
+        if (!tamu) {
+            form.hidden = true;
+            return tampilPesan("Tamu tidak ditemukan.", "warning");
+        }
+
+        guestId = String(tamu.id).trim();
+        document.getElementById("sapaan")?.replaceChildren("Kepada " + tamu.nama_tamu);
+
 
         // Isi ulang form jika tamu sudah pernah RSVP
         const snap = await getDoc(doc(db, "rsvp", guestId));
