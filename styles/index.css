@@ -201,3 +201,83 @@ body {
 @media (max-width: 480px) {
   .card { --pad: 20px; }
 }
+.rsvp-form {
+  max-width: 460px;
+  margin: 20px auto 0;
+  display: grid;
+  gap: 18px;
+  text-align: left;
+}
+
+fieldset.field { border: 0; padding: 0; min-width: 0; }
+.field label, .field legend {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+  padding: 0;
+}
+
+.field input[type="text"],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line, #dde3e8);
+  border-radius: 10px;
+  font: inherit;
+  color: inherit;
+  background: #fff;
+}
+.field textarea { resize: vertical; }
+.field input[type="text"]:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--ink, #1d2a44);
+  outline-offset: 1px;
+}
+
+/* Hadir / Tidak hadir sebagai tombol pilihan */
+.pilihan { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pilihan input { position: absolute; opacity: 0; pointer-events: none; }
+.pilihan label {
+  margin: 0;
+  text-align: center;
+  padding: 12px;
+  border: 1px solid var(--line, #dde3e8);
+  border-radius: 10px;
+  cursor: pointer;
+  background: #fff;
+}
+.pilihan input:checked + label {
+  background: var(--ink, #1d2a44);
+  border-color: var(--ink, #1d2a44);
+  color: #fff;
+}
+.pilihan input:focus-visible + label {
+  outline: 2px solid var(--accent, #b85c70);
+  outline-offset: 2px;
+}
+
+.rsvp-btn {
+  padding: 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink, #1d2a44);
+  color: #fff;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+.rsvp-btn:disabled { opacity: .6; cursor: wait; }
+
+.pesan {
+  max-width: 460px;
+  margin: 16px auto 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #eef2f6;
+}
+.pesan.ok  { background: #e3f4e8; }
+.pesan.err { background: #fbe4e4; }
+
+[hidden] { display: none !important; }  /* supaya atribut hidden selalu menang */

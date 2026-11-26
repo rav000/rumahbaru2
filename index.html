@@ -58,32 +58,38 @@
 
         <article class="card full">
             <h2>Konfirmasi Kehadiran</h2>
-            <div id="pesan" class="mt-3" role="status"></div>
-            <form id="rsvp-form" class="mx-auto" style="max-width:420px" novalidate>
-                <div class="mb-3">
-                <label class="form-label d-block">Konfirmasi kehadiran</label>
-                <div class="btn-group w-100" role="group">
-                    <input type="radio" class="btn-check" name="status" id="hadir" value="hadir" required>
-                    <label class="btn btn-outline-success" for="hadir">Hadir</label>
-                    <input type="radio" class="btn-check" name="status" id="tidak" value="tidak">
-                    <label class="btn btn-outline-secondary" for="tidak">Tidak hadir</label>
-                </div>
+            <div id="pesan" class="pesan" role="status" hidden></div>
+
+            <form id="rsvp-form" class="rsvp-form" novalidate>
+                <div class="field">
+                <label for="nama">Nama</label>
+                <input type="text" id="nama" maxlength="100" autocomplete="name" required>
                 </div>
 
-                <div class="mb-3" id="jumlah-wrap">
-                <label for="jumlah" class="form-label">Jumlah yang hadir</label>
-                <select id="jumlah" class="form-select">
+                <fieldset class="field">
+                <legend>Kehadiran</legend>
+                <div class="pilihan">
+                    <input type="radio" name="status" id="hadir" value="hadir">
+                    <label for="hadir">Hadir</label>
+                    <input type="radio" name="status" id="tidak" value="tidak">
+                    <label for="tidak">Tidak hadir</label>
+                </div>
+                </fieldset>
+
+                <div class="field" id="jumlah-wrap">
+                <label for="jumlah">Jumlah yang hadir</label>
+                <select id="jumlah">
                     <option>1</option><option>2</option><option>3</option>
                     <option>4</option><option>5</option>
                 </select>
                 </div>
 
-                <div class="mb-3">
-                <label for="ucapan" class="form-label">Ucapan (opsional)</label>
-                <textarea id="ucapan" class="form-control" rows="3" maxlength="300"></textarea>
+                <div class="field">
+                <label for="ucapan">Ucapan (opsional)</label>
+                <textarea id="ucapan" rows="3" maxlength="300"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-dark w-100" id="kirim">Kirim RSVP</button>
+                <button type="submit" id="kirim" class="rsvp-btn">Kirim RSVP</button>
             </form>
         </article>
 
