@@ -52,11 +52,38 @@
         </article>
 
         <article class="card wide">
-            <h2>Proin ut ligula vel nunc</h2>
-            <p>Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa fusce ac turpis quis ligula lacinia aliquet.</p>
+            <h2>Konfirmasi Kehadiran</h2>
+            <form id="rsvp-form" class="mx-auto" style="max-width:420px" novalidate>
+                <div class="mb-3">
+                <label class="form-label d-block">Konfirmasi kehadiran</label>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="status" id="hadir" value="hadir" required>
+                    <label class="btn btn-outline-success" for="hadir">Hadir</label>
+                    <input type="radio" class="btn-check" name="status" id="tidak" value="tidak">
+                    <label class="btn btn-outline-secondary" for="tidak">Tidak hadir</label>
+                </div>
+                </div>
+
+                <div class="mb-3" id="jumlah-wrap">
+                <label for="jumlah" class="form-label">Jumlah yang hadir</label>
+                <select id="jumlah" class="form-select">
+                    <option>1</option><option>2</option><option>3</option>
+                    <option>4</option><option>5</option>
+                </select>
+                </div>
+
+                <div class="mb-3">
+                <label for="ucapan" class="form-label">Ucapan (opsional)</label>
+                <textarea id="ucapan" class="form-control" rows="3" maxlength="300"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-dark w-100" id="kirim">Kirim RSVP</button>
+                <div id="pesan" class="mt-3" role="status"></div>
+            </form>
         </article>
 
         <article class="card accent">
+            <p>Sudah ada</p>
             <div class="big" data-count="150">0</div>
             <h2>Pendaftar</h2>
             <p>Mari ikut acara selametan rumah bar gua!</p>
