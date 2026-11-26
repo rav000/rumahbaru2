@@ -149,15 +149,29 @@ body {
     }
 }
 #countdown {
-    display: flex;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(6px, 2vw, 16px);
+    width: 100%;
 }
 .box { 
     background: #fff; 
-    padding: 16px 24px;
+    padding: clamp(10px, 3vw, 16px) 4px;
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 2px 6px rgba(0,0,0,.1); 
+    min-width: none;
 }
-/* .box span { display: block; font-size: 2rem; font-weight: bold; }
-.box small { color: #666; } */
+.box span {
+    display: block;
+    font-size: clamp(1.3rem, 6.5vw, 2rem);
+    font-weight: bold;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums; /* lebar angka seragam, tidak bergoyang tiap detik */
+}
+.box small {
+    display: block;
+    margin-top: 4px;
+    color: #666;
+    font-size: clamp(.65rem, 2.8vw, .8rem);
+}
