@@ -175,3 +175,15 @@ body {
     color: #666;
     font-size: clamp(.65rem, 2.8vw, .8rem);
 }
+.peta {
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 16px 0;
+    border: 1px solid var(--line);
+}
+.peta iframe { width: 100%; height: 100%; border: 0; }
+
+@media (max-width: 480px) {
+    .peta { aspect-ratio: 4 / 3; }  /* sedikit lebih tinggi di layar kecil */
+}
