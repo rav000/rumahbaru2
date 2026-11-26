@@ -112,6 +112,7 @@ body {
 
 .card.wide { grid-column: span 4; }
 .card.half { grid-column: span 3; }
+.card.full { grid-column: 1 / -1; }
 
 .card.accent {
     background: var(--accent-soft);
