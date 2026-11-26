@@ -6,8 +6,8 @@
     --accent: #b85c70;
     --accent-soft: #f3e1e6;
     --line: #dde3e8;
-    --display: "Cormorant Garamond", Georgia, serif;
-    --body: "DM Sans", system-ui, sans-serif;
+    --display: "Helvetica", serif;
+    --body: "Helvetica Neue", system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,6 +29,7 @@ body {
     padding: 64px 24px;
     position: relative;
     overflow: hidden;
+    min-height: 100svh;
   }
 
   .hero::before,
@@ -47,10 +48,11 @@ body {
   .hero h1 {
     font-family: var(--display);
     font-weight: 600;
-    font-size: clamp(3rem, 11vw, 7rem);
+    font-size: clamp(2.4rem, 11vw, 7rem);
     line-height: 1;
     letter-spacing: -0.01em;
     margin-bottom: 20px;
+    overflow-wrap: anywhere;
   }
 
   /* huruf dipecah oleh JS, lalu naik satu per satu */
