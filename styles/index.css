@@ -102,11 +102,21 @@ body {
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 14px;
-    padding: 28px;
+    --pad: 28px;
+    padding: var(--pad);
     grid-column: span 2;
     opacity: 0;
     transform: translateY(24px);
     transition: opacity .6s ease, transform .6s ease;
+}
+
+.card-foto {
+    display: block;
+    width: calc(100% + var(--pad) * 2);
+    margin: calc(var(--pad) * -1) calc(var(--pad) * -1) 20px;  /* tempel ke tepi atas dan samping kartu */
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 13px 13px 0 0;   /* ikut lengkung sudut kartu */
 }
 .card.show { opacity: 1; transform: none; }
 
@@ -187,4 +197,7 @@ body {
 
 @media (max-width: 480px) {
     .peta { aspect-ratio: 4 / 3; }  /* sedikit lebih tinggi di layar kecil */
+}
+@media (max-width: 480px) {
+  .card { --pad: 20px; }
 }
