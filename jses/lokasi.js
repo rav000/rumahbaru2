@@ -2,7 +2,7 @@ const LOKASI = {
   nama: "Rumah Baru",
   alamat: "Jl. Magnolia VI No.6, Jelupang, Kec. Serpong Utara, Kota Tangerang Selatan, Banten 15323",
   // Pakai koordinat supaya pin tepat: klik kanan di Google Maps → klik angka koordinat untuk menyalin
-  koordinat: "-6.2915,106.7170"
+  koordinat: ""
 };
 
 const q = encodeURIComponent(LOKASI.koordinat);
